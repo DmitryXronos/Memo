@@ -1,0 +1,28 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44444
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/login"
+    },
+    {
+      "DownstreamPathTemplate": "/auth/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44444
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/register"
+    }
+    
+  ],
+  "GlobalConfiguration": {}
+}

@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: memo_postgres
+    image: "postgres:14.4"
+    environment:
+      POSTGRES_USER: "memo_user"
+      POSTGRES_PASSWORD: "gWZJPiXy6q"
+      PGDATA: "/data/postgres"
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
