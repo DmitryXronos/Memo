@@ -6,7 +6,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47001
+          "Port": 47002
         }
       ],
       "UpstreamPathTemplate": "api/Note/GetAll"
@@ -17,7 +17,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47001
+          "Port": 47002
         }
       ],
       "UpstreamPathTemplate": "api/Note/GetByDate"
@@ -28,7 +28,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47001
+          "Port": 47002
         }
       ],
       "UpstreamPathTemplate": "api/Note/Create"
@@ -39,7 +39,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47001
+          "Port": 47002
         }
       ],
       "UpstreamPathTemplate": "api/Note/Delete"
@@ -50,7 +50,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47001
+          "Port": 47002
         }
       ],
       "UpstreamPathTemplate": "api/Note/Update"
