@@ -54,6 +54,28 @@
         }
       ],
       "UpstreamPathTemplate": "api/Note/Update"
+    },
+    {
+      "DownstreamPathTemplate": "api/Auth/Login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 47000
+        }
+      ],
+      "UpstreamPathTemplate": "api/Auth/Login"
+    },
+    {
+      "DownstreamPathTemplate": "api/Auth/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 47000
+        }
+      ],
+      "UpstreamPathTemplate": "api/Auth/Register"
     }
   ],
   "GlobalConfiguration": {}
