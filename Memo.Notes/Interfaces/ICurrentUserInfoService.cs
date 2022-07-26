@@ -6,5 +6,5 @@
 public interface ICurrentUserInfoService
 {
     /// <summary>Id пользователя</summary>
-    public Guid UserId { get; set; }
+    Guid UserId { get; set; }
 }

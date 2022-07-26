@@ -24,7 +24,7 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 // Сервисы
 builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<ICurrentUserInfoService, CurrentUserInfoServices>();
+builder.Services.AddScoped<ICurrentUserInfoService, CurrentUserInfoService>();
 
 var app = builder.Build();
 

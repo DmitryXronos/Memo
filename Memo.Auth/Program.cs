@@ -1,4 +1,7 @@
 using Memo.Auth;
+using Memo.Auth.Config;
+using Memo.Auth.Interfaces;
+using Memo.Auth.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +11,16 @@ var databaseConnection = builder.Configuration.GetConnectionString("Database");
 builder.Services.AddDbContext<ApplicationContext>(p => 
     p.UseNpgsql(databaseConnection));
 
+// Конфиги
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
+
 // Контроллеры
 builder.Services.AddControllers();
+
+// Сервисы
+builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<ICurrentUserInfoService, CurrentUserInfoService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
 
 var app = builder.Build();
 
