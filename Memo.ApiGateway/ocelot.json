@@ -1,28 +1,60 @@
 ﻿{
   "Routes": [
     {
-      "DownstreamPathTemplate": "/auth/login",
+      "DownstreamPathTemplate": "api/Note/GetAll",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44444
+          "Port": 47001
         }
       ],
-      "UpstreamPathTemplate": "/auth/login"
+      "UpstreamPathTemplate": "api/Note/GetAll"
     },
     {
-      "DownstreamPathTemplate": "/auth/register",
+      "DownstreamPathTemplate": "api/Note/GetByDate",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44444
+          "Port": 47001
         }
       ],
-      "UpstreamPathTemplate": "/auth/register"
+      "UpstreamPathTemplate": "api/Note/GetByDate"
+    },
+    {
+      "DownstreamPathTemplate": "api/Note/Create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 47001
+        }
+      ],
+      "UpstreamPathTemplate": "api/Note/Create"
+    },
+    {
+      "DownstreamPathTemplate": "api/Note/Delete",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 47001
+        }
+      ],
+      "UpstreamPathTemplate": "api/Note/Delete"
+    },
+    {
+      "DownstreamPathTemplate": "api/Note/Update",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 47001
+        }
+      ],
+      "UpstreamPathTemplate": "api/Note/Update"
     }
-    
   ],
   "GlobalConfiguration": {}
 }

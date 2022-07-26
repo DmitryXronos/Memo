@@ -26,7 +26,7 @@ public sealed class NoteController : ControllerBase
     /// <summary>Получение всех заметок пользователя из определенного интервала времени</summary>
     [CheckToken]
     [HttpGet]
-    public async Task<IActionResult> GetById(GetNotesByDateQuery query)
+    public async Task<IActionResult> GetByDate(GetNotesByDateQuery query)
         => Ok(await _mediator.Send(query));
 
     /// <summary>Создание заметки</summary>
