@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memo.Notes", "Memo.Notes\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memo.Auth", "Memo.Auth\Memo.Auth.csproj", "{2A90AACA-778C-400A-9210-BCA79B9E1CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memo.Mvc", "Memo.Mvc\Memo.Mvc.csproj", "{00A8607D-4E23-4516-BA22-CE261A30F65F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memo.Mvc", "Memo.Mvc\Memo.Mvc.csproj", "{039A6587-BBF9-4466-84D0-1FB5C46468CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		{2A90AACA-778C-400A-9210-BCA79B9E1CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A90AACA-778C-400A-9210-BCA79B9E1CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A90AACA-778C-400A-9210-BCA79B9E1CA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00A8607D-4E23-4516-BA22-CE261A30F65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00A8607D-4E23-4516-BA22-CE261A30F65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00A8607D-4E23-4516-BA22-CE261A30F65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00A8607D-4E23-4516-BA22-CE261A30F65F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039A6587-BBF9-4466-84D0-1FB5C46468CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039A6587-BBF9-4466-84D0-1FB5C46468CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039A6587-BBF9-4466-84D0-1FB5C46468CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039A6587-BBF9-4466-84D0-1FB5C46468CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
