@@ -41,4 +41,15 @@ public sealed class AuthController : ControllerBase
 
         return BadRequest();
     }
+
+    /// <summary>Смена пароля</summary>
+    [ValidateModel]
+    [CheckToken]
+    [HttpPost]
+    public async Task<IActionResult> ChangePassword(ChangePasswordRequestModel requestModel)
+    {
+        var success = await _authService.ChangePasswordAsync(requestModel);
+
+        return success ? Ok() : BadRequest();
+    }
 }

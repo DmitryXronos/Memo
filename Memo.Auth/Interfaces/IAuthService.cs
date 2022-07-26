@@ -10,4 +10,7 @@ public interface IAuthService
 
     /// <summary>Регистрирует пользователя и возвращает токен</summary>
     Task<string> RegisterAsync(RegisterRequestModel requestModel);
+
+    /// <summary>Меняет пароль пользователя и возвращает true в случае успеха</summary>
+    Task<bool> ChangePasswordAsync(ChangePasswordRequestModel requestModel);
 }

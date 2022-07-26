@@ -38,14 +38,14 @@ public sealed class NoteController : ControllerBase
 
     /// <summary>Удаление заметки</summary>
     [CheckToken]
-    [HttpDelete]
+    [HttpPost]
     public async Task<IActionResult> Delete(DeleteNoteByIdCommand command)
         => Ok(await _mediator.Send(command));
 
     /// <summary>Обновление заметки</summary>
     [ValidateModel]
     [CheckToken]
-    [HttpPut]
+    [HttpPost]
     public async Task<IActionResult> Update(UpdateNoteCommand command)
         => Ok(await _mediator.Send(command));
 }

@@ -28,6 +28,7 @@ public sealed class GetNotesByDateQuery : IRequest<IEnumerable<Note>>
         public async Task<IEnumerable<Note>> Handle(GetNotesByDateQuery query, CancellationToken cancellationToken)
         {
             var noteList = await _context.Notes
+                .AsNoTracking()
                 .Where(p => p.UserId == _info.UserId && p.Date >= query.StartTime && p.Date <= query.EndTime)
                 .ToListAsync(cancellationToken);
 

@@ -11,12 +11,15 @@ public sealed class AuthService : IAuthService
     private readonly ApplicationContext _context;
     private readonly IJwtService _jwtService;
     private readonly IPasswordService _passwordService;
+    private readonly ICurrentUserInfoService _info;
 
-    public AuthService(ApplicationContext context, IJwtService jwtService, IPasswordService passwordService)
+    public AuthService(ApplicationContext context, IJwtService jwtService, IPasswordService passwordService,
+        ICurrentUserInfoService info)
     {
         _context = context;
         _jwtService = jwtService;
         _passwordService = passwordService;
+        _info = info;
     }
     
     /// <summary>Выполняет вход за пользователя и возвращает токен</summary>
@@ -29,7 +32,7 @@ public sealed class AuthService : IAuthService
             return string.Empty;
 
         // Если пароль не верен, то токен не генерируем
-        if (_passwordService.VerifyPassword(user.PasswordHash, requestModel.Password))
+        if (! _passwordService.VerifyPassword(user.PasswordHash, requestModel.Password))
             return string.Empty;
 
         // Генерируем и возвращаем токен
@@ -76,5 +79,28 @@ public sealed class AuthService : IAuthService
         });
 
         return token;
+    }
+
+    /// <summary>Меняет пароль пользователя и возвращает true в случае успеха</summary>
+    public async Task<bool> ChangePasswordAsync(ChangePasswordRequestModel requestModel)
+    {
+        var user = await _context.Users
+            .FirstOrDefaultAsync(p => p.Id == _info.UserId);
+
+        if (user is null)
+            return false;
+        
+        // Если старый пароль не верен, то ничего не меняем
+        if (! _passwordService.VerifyPassword(user.PasswordHash, requestModel.OldPassword))
+            return false;
+        
+        // Хэшируем новый пароль
+        var hash = _passwordService.HashPassword(requestModel.NewPassword);
+        
+        // Меняем пароль
+        user.PasswordHash = hash;
+        await _context.SaveChangesAsync();
+
+        return true;
     }
 }
