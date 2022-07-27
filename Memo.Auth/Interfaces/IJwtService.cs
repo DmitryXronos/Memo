@@ -7,8 +7,5 @@ public interface IJwtService
     string GenerateJwt(ICurrentUserInfoService info);
     
     /// <summary>Проверяет достоверность jwt</summary>
-    bool VerifyJwt(string jwt);
-
-    /// <summary>Извлекает полезные данныео пользователе из jwt</summary>
-    ICurrentUserInfoService? GetPayload(string jwt);
+    bool VerifyJwt(string token, out ICurrentUserInfoService? info);
 }

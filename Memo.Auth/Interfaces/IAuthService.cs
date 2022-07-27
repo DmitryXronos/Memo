@@ -5,10 +5,10 @@ namespace Memo.Auth.Interfaces;
 /// <summary>Интерфейс сервиса авторизации</summary>
 public interface IAuthService
 {
-    /// <summary>Выполняет вход за пользователя и возвращает токен</summary>
+    /// <summary>Выполняет вход за пользователя и возвращает токен в случае успеха</summary>
     Task<string> LoginAsync(LoginRequestModel requestModel);
 
-    /// <summary>Регистрирует пользователя и возвращает токен</summary>
+    /// <summary>Регистрирует пользователя и возвращает токен в случае успеха</summary>
     Task<string> RegisterAsync(RegisterRequestModel requestModel);
 
     /// <summary>Меняет пароль пользователя и возвращает true в случае успеха</summary>

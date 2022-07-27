@@ -32,10 +32,10 @@ public sealed class AuthService : IAuthService
             return string.Empty;
 
         // Если пароль не верен, то токен не генерируем
-        if (! _passwordService.VerifyPassword(user.PasswordHash, requestModel.Password))
+        if (!_passwordService.VerifyPassword(user.PasswordHash, requestModel.Password))
             return string.Empty;
 
-        // Генерируем и возвращаем токен
+            // Генерируем и возвращаем токен
         var token = _jwtService.GenerateJwt(new CurrentUserInfoService
         {
             UserId = user.Id,

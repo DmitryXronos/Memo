@@ -12,10 +12,21 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Auth/Login");
     });
 
+// Авторизация
+builder.Services.AddAuthorization();
+
+// Mvc
+builder.Services.AddControllersWithViews();
+
 // Сервисы
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
+
+// Сопоставление контроллеров с маршрутами
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // Аутентификация
 app.UseAuthentication();

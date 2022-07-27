@@ -27,14 +27,7 @@ public sealed class AuthController : Controller
     {
         if (ModelState.IsValid)
         {
-            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-            if (user != null)
-            {
-                await Authenticate(model.Email); // аутентификация
- 
-                return RedirectToAction("Index", "Home");
-            }
-            ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+            var token = await _authService.LoginAsync(model);
         }
         return View(model);
     }
@@ -43,7 +36,7 @@ public sealed class AuthController : Controller
     [HttpGet]
     public IActionResult Register() => View();
 
-    /// <summary>Регистрирует пользователя</summary>
+    /*/// <summary>Регистрирует пользователя</summary>
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterRequestModel model)
@@ -84,5 +77,5 @@ public sealed class AuthController : Controller
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
-        }
+        }*/
 }

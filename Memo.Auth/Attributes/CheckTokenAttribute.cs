@@ -1,5 +1,4 @@
 ﻿using Memo.Auth.Interfaces;
-using Memo.Auth.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -24,25 +23,23 @@ public sealed class CheckTokenAttribute : Attribute, IActionFilter
         }
 
         // Валидируем токен
-        var jwtService = context.HttpContext.RequestServices.GetRequiredService<JwtService>();
-        if (!jwtService.VerifyJwt(token))
+        var jwtService = context.HttpContext.RequestServices.GetRequiredService<IJwtService>();
+        if (!jwtService.VerifyJwt(token, out var info))
+        {
+            context.Result = new UnauthorizedResult();
+            return;
+        }
+        
+        if (info is null)
         {
             context.Result = new UnauthorizedResult();
             return;
         }
 
-        // Извлекаем payload
-        var payload = jwtService.GetPayload(token);
-        if (payload is null)
-        {
-            context.Result = new UnauthorizedResult();
-            return;
-        }
-
-        // Добавляем payload в DI
+        // Добавляем информацию о пользователе в DI
         var payloadService = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserInfoService>();
-        payloadService.UserId = payload.UserId;
-        payloadService.Role = payload.Role;
+        payloadService.UserId = info.UserId;
+        payloadService.Role = info.Role;
     }
 
     /// <summary>Вызывается после выполнения действия</summary>

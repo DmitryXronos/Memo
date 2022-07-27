@@ -1,11 +1,37 @@
-﻿using Memo.Mvc.Interfaces;
+﻿using Memo.Mvc.Extensions;
+using Memo.Mvc.Interfaces;
+using Memo.Mvc.RequestModels;
 
 namespace Memo.Mvc.Services;
 
+/// <summary>Сервис по авторизации пользователей</summary>
 public sealed class AuthService : IAuthService
 {
-    public async Task<string> LoginAsync()
+    /// <summary>Выполняет вход пользователя через сервис авторизации</summary>
+    public async Task<string> LoginAsync(LoginRequestModel requestModel)
     {
-        
+        // Шлем запрос к сервису авторизации
+        using var httpClient = new HttpClient();
+        var queryString = $"http://localhost:5000/Auth/Login?{requestModel.ToQueryString()}";
+        var result = await httpClient.PostAsync(queryString, null);
+
+        // Читаем токен из ответа
+        var token = await result.Content.ReadAsStringAsync();
+
+        return token;
+    }
+
+    /// <summary>Выполняет регистрацию пользователя через микросервис авторизации</summary>
+    public async Task<string> RegisterAsync(RegisterRequestModel requestModel)
+    {
+        // Шлем запрос к сервису авторизации
+        using var httpClient = new HttpClient();
+        var queryString = $"http://localhost:5000/Auth/Register?{requestModel.ToQueryString()}";
+        var result = await httpClient.PostAsync(queryString, null);
+
+        // Читаем токен из ответа
+        var token = await result.Content.ReadAsStringAsync();
+
+        return token;
     }
 }

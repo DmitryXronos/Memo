@@ -23,12 +23,12 @@ public sealed class GetAllNotesQuery : IRequest<IEnumerable<Note>>
     
         public async Task<IEnumerable<Note>> Handle(GetAllNotesQuery query, CancellationToken cancellationToken)
         {
-            var noteList = await _context.Notes
+            var notes = await _context.Notes
                 .AsNoTracking()
                 .Where(p => p.UserId == _info.UserId)
-                .ToListAsync(cancellationToken);
+                .ToArrayAsync(cancellationToken);
 
-            return noteList.AsReadOnly();
+            return notes;
         }
     }
 }

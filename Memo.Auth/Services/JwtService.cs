@@ -47,13 +47,14 @@ public sealed class JwtService : IJwtService
     }
 
     /// <summary>Проверяет достоверность jwt</summary>
-    public bool VerifyJwt(string jwt)
+    public bool VerifyJwt(string token, out ICurrentUserInfoService? info)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
+        
         // Пытаемся валидировать токен
         try
         {
-            tokenHandler.ValidateToken(jwt, new TokenValidationParameters
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
             {
                 // Валидируем подпись
                 ValidateIssuerSigningKey = true,
@@ -70,25 +71,20 @@ public sealed class JwtService : IJwtService
         }
         catch
         {
+            info = null;
             return false;
         }
 
-        return true;
-    }
-
-    /// <summary>Извлекает полезные данные из jwt</summary>
-    public ICurrentUserInfoService? GetPayload(string jwt)
-    {
-        var tokenHandler  = new JwtSecurityTokenHandler();
-        
-        // Читаем токен
-        var securityToken  = tokenHandler.ReadToken(jwt) as JwtSecurityToken;
+        // Пытаемся считать инфу о пользователе из токена
+        var securityToken  = tokenHandler.ReadToken(token) as JwtSecurityToken;
         if (securityToken is null)
-            return null;
-        
-        // Читаем нужный claim
+        {
+            info = null;
+            return false;
+        }
         var stringClaimValue  = securityToken.Claims.First(claim  => claim.Type == nameof(ICurrentUserInfoService)).Value;
-        
-        return JsonSerializer.Deserialize<ICurrentUserInfoService>(stringClaimValue);
+        info = JsonSerializer.Deserialize<ICurrentUserInfoService>(stringClaimValue);
+
+        return true;
     }
 }

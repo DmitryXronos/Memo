@@ -24,23 +24,21 @@ public sealed class CheckTokenAttribute : Attribute, IActionFilter
 
         // Валидируем токен
         var jwtService = context.HttpContext.RequestServices.GetRequiredService<IJwtService>();
-        if (!jwtService.VerifyJwt(token))
+        if (!jwtService.VerifyJwt(token, out var info))
         {
             context.Result = new UnauthorizedResult();
             return;
         }
 
-        // Извлекаем payload
-        var payload = jwtService.GetPayload(token);
-        if (payload is null)
+        if (info is null)
         {
             context.Result = new UnauthorizedResult();
             return;
         }
 
         // Добавляем информацию о пользователе в DI
-        var infoService = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserInfoService>();
-        infoService.UserId = payload.UserId;
+        var payloadService = context.HttpContext.RequestServices.GetRequiredService<ICurrentUserInfoService>();
+        payloadService.UserId = info.UserId;
     }
 
     /// <summary>Вызывается после выполнения действия</summary>
@@ -48,3 +46,4 @@ public sealed class CheckTokenAttribute : Attribute, IActionFilter
     {
     }
 }
+
