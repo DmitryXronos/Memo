@@ -61,7 +61,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47000
+          "Port": 47001
         }
       ],
       "UpstreamPathTemplate": "api/Auth/Login"
@@ -72,7 +72,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 47000
+          "Port": 47001
         }
       ],
       "UpstreamPathTemplate": "api/Auth/Register"

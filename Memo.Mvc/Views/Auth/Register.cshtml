@@ -1,18 +1,30 @@
-﻿@model dynamic
+﻿@model Memo.Mvc.RequestModels.RegisterRequestModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<h2>Registration</h2>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<form asp-action="Register" asp-controller="Auth" asp-anti-forgery="true">
+    <div>
+        <p>
+            <label asp-for="Email">Email</label><br />
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </p>
+        <p>
+            <label asp-for="Name">Name</label><br />
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" />
+        </p>
+        <p>
+            <label asp-for="Password">Password</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </p>
+        <p>
+            <input type="submit" value="Register"  />
+        </p>
+    </div>
+</form>
+
+<a asp-action="Login" asp-controller="Auth">Already have an account? Log in</a>

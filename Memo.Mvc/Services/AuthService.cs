@@ -12,7 +12,7 @@ public sealed class AuthService : IAuthService
     {
         // Шлем запрос к сервису авторизации
         using var httpClient = new HttpClient();
-        var queryString = $"http://localhost:5000/Auth/Login?{requestModel.ToQueryString()}";
+        var queryString = $"http://localhost:47000/Auth/Login?{requestModel.ToQueryString()}";
         var result = await httpClient.PostAsync(queryString, null);
 
         // Читаем токен из ответа
@@ -26,7 +26,7 @@ public sealed class AuthService : IAuthService
     {
         // Шлем запрос к сервису авторизации
         using var httpClient = new HttpClient();
-        var queryString = $"http://localhost:5000/Auth/Register?{requestModel.ToQueryString()}";
+        var queryString = $"http://localhost:47000/Auth/Register?{requestModel.ToQueryString()}";
         var result = await httpClient.PostAsync(queryString, null);
 
         // Читаем токен из ответа
