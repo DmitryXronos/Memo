@@ -4,7 +4,7 @@ EXPOSE 47000
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Memo.ApiGateway/Memo.ApiGateway.csproj", "Memo.ApiGateway/"]
+COPY ["Memo.ApiGateway.csproj", "Memo.ApiGateway/"]
 RUN dotnet restore "Memo.ApiGateway/Memo.ApiGateway.csproj"
 COPY . .
 WORKDIR "/src/Memo.ApiGateway"

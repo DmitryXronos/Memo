@@ -4,7 +4,7 @@ EXPOSE 47002
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Memo.Notes/Memo.Notes.csproj", "Memo.Notes/"]
+COPY ["Memo.Notes.csproj", "Memo.Notes/"]
 RUN dotnet restore "Memo.Notes/Memo.Notes.csproj"
 COPY . .
 WORKDIR "/src/Memo.Notes"

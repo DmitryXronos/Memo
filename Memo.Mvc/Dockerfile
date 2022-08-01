@@ -4,7 +4,7 @@ EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Memo.Mvc/Memo.Mvc.csproj", "Memo.Mvc/"]
+COPY ["Memo.Mvc.csproj", "Memo.Mvc/"]
 RUN dotnet restore "Memo.Mvc/Memo.Mvc.csproj"
 COPY . .
 WORKDIR "/src/Memo.Mvc"

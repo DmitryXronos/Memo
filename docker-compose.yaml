@@ -1,14 +1,53 @@
 version: "3.8"
 
 services:
-  postgres:
-    container_name: memo_postgres
-    image: "postgres:14.4"
-    environment:
-      POSTGRES_USER: "memo_user"
-      POSTGRES_PASSWORD: "gWZJPiXy6q"
-      PGDATA: "/data/postgres"
-    ports:
-      - "5432:5432"
-    restart: unless-stopped
-
+    postgres:
+        image: "postgres:14.4"
+        container_name: postgres
+        environment:
+            POSTGRES_USER: "memo_user"
+            POSTGRES_PASSWORD: "gWZJPiXy6q"
+            PGDATA: "/data/postgres"
+        ports:
+            - "15432:5432"
+        restart: unless-stopped
+    
+    memo_auth:
+        depends_on:
+            postgres:
+                condition: service_healthy
+        container_name: memo_auth
+        build:
+            context: ./Memo.Auth
+        ports:
+            - "47001:47001"
+      
+    memo_notes:
+        depends_on:
+            postgres:
+                condition: service_healthy
+        container_name: memo_notes
+        build:
+            context: ./Memo.Notes
+        ports:
+            - "47002:47002"
+      
+    memo_api_gateway:
+        depends_on:
+            memo_auth:
+                condition: service_healthy
+            memo_notes:
+                condition: service_healthy
+        build:
+            context: ./Memo.ApiGateway
+        ports:
+            - "47000:47000"
+            
+    memo_mvc:
+        depends_on:
+            memo_api_gateway:
+                condition: service_healthy
+        build:
+            context: ./Memo.Mvc
+        ports:
+            - "5000:5000"
