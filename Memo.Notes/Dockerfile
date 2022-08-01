@@ -4,14 +4,14 @@ EXPOSE 47002
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Memo.Notes.csproj", "Memo.Notes/"]
-RUN dotnet restore "Memo.Notes/Memo.Notes.csproj"
+COPY Memo.Notes.csproj Memo.Notes.csproj
+RUN dotnet restore Memo.Notes.csproj
 COPY . .
-WORKDIR "/src/Memo.Notes"
-RUN dotnet build "Memo.Notes.csproj" -c Release -o /app/build
+WORKDIR /src
+RUN dotnet build Memo.Notes.csproj -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Memo.Notes.csproj" -c Release -o /app/publish
+RUN dotnet publish Memo.Notes.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
