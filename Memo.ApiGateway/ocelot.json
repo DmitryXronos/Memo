@@ -1,7 +1,7 @@
 ﻿{
   "Routes": [
     {
-      "DownstreamPathTemplate": "api/Note/GetAll",
+      "DownstreamPathTemplate": "/api/Note/GetAll",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,10 +9,10 @@
           "Port": 47002
         }
       ],
-      "UpstreamPathTemplate": "api/Note/GetAll"
+      "UpstreamPathTemplate": "/api/Note/GetAll"
     },
     {
-      "DownstreamPathTemplate": "api/Note/GetByDate",
+      "DownstreamPathTemplate": "/api/Note/GetByDate",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -20,10 +20,10 @@
           "Port": 47002
         }
       ],
-      "UpstreamPathTemplate": "api/Note/GetByDate"
+      "UpstreamPathTemplate": "/api/Note/GetByDate"
     },
     {
-      "DownstreamPathTemplate": "api/Note/Create",
+      "DownstreamPathTemplate": "/api/Note/Create",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -31,10 +31,10 @@
           "Port": 47002
         }
       ],
-      "UpstreamPathTemplate": "api/Note/Create"
+      "UpstreamPathTemplate": "/api/Note/Create"
     },
     {
-      "DownstreamPathTemplate": "api/Note/Delete",
+      "DownstreamPathTemplate": "/api/Note/Delete",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -42,10 +42,10 @@
           "Port": 47002
         }
       ],
-      "UpstreamPathTemplate": "api/Note/Delete"
+      "UpstreamPathTemplate": "/api/Note/Delete"
     },
     {
-      "DownstreamPathTemplate": "api/Note/Update",
+      "DownstreamPathTemplate": "/api/Note/Update",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -53,10 +53,10 @@
           "Port": 47002
         }
       ],
-      "UpstreamPathTemplate": "api/Note/Update"
+      "UpstreamPathTemplate": "/api/Note/Update"
     },
     {
-      "DownstreamPathTemplate": "api/Auth/Login",
+      "DownstreamPathTemplate": "/api/Auth/Login",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -64,10 +64,10 @@
           "Port": 47001
         }
       ],
-      "UpstreamPathTemplate": "api/Auth/Login"
+      "UpstreamPathTemplate": "/api/Auth/Login"
     },
     {
-      "DownstreamPathTemplate": "api/Auth/Register",
+      "DownstreamPathTemplate": "/api/Auth/Register",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -75,7 +75,7 @@
           "Port": 47001
         }
       ],
-      "UpstreamPathTemplate": "api/Auth/Register"
+      "UpstreamPathTemplate": "/api/Auth/Register"
     }
   ],
   "GlobalConfiguration": {}

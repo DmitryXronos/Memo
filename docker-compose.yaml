@@ -9,13 +9,12 @@ services:
             POSTGRES_PASSWORD: "gWZJPiXy6q"
             PGDATA: "/data/postgres"
         ports:
-            - "15432:5432"
+            - "5432:5432"
         restart: unless-stopped
     
     memo_auth:
         depends_on:
-            postgres:
-                condition: service_healthy
+            - postgres
         container_name: memo_auth
         build:
             context: ./Memo.Auth
@@ -24,8 +23,7 @@ services:
       
     memo_notes:
         depends_on:
-            postgres:
-                condition: service_healthy
+            - postgres
         container_name: memo_notes
         build:
             context: ./Memo.Notes
@@ -34,10 +32,8 @@ services:
       
     memo_api_gateway:
         depends_on:
-            memo_auth:
-                condition: service_healthy
-            memo_notes:
-                condition: service_healthy
+            - memo_auth
+            - memo_notes
         build:
             context: ./Memo.ApiGateway
         ports:
@@ -45,8 +41,7 @@ services:
             
     memo_mvc:
         depends_on:
-            memo_api_gateway:
-                condition: service_healthy
+            - memo_api_gateway
         build:
             context: ./Memo.Mvc
         ports:
