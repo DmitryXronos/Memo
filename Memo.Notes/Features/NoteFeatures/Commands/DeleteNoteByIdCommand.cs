@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Memo.Notes.Interfaces;
+using Memo.Notes.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Memo.Notes.Features.NoteFeatures.Commands;

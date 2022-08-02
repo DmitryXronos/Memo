@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Memo.Notes.Interfaces;
 using Memo.Notes.Models;
+using Memo.Notes.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Memo.Notes.Features.NoteFeatures.Queries;

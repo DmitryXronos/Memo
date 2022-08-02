@@ -1,4 +1,4 @@
-﻿namespace Memo.Auth.Enums;
+﻿namespace Memo.Auth.Access;
 
 /// <summary>Типы ролей</summary>
 public enum RoleType : byte

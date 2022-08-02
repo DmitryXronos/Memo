@@ -1,6 +1,6 @@
 ﻿using Memo.Mvc.RequestModels;
 
-namespace Memo.Mvc.Interfaces;
+namespace Memo.Mvc.Services;
 
 /// <summary>Интерфейс сервиса по авторизации пользователей</summary>
 public interface IAuthService

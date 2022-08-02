@@ -1,8 +1,8 @@
-﻿using Memo.Auth.Interfaces;
+﻿using Memo.Auth.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Memo.Auth.Attributes;
+namespace Memo.Auth.Access;
 
 /// <summary>Проверяет токен, пришедший в заголовках запроса</summary>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]

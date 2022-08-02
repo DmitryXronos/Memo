@@ -1,4 +1,4 @@
-﻿namespace Memo.Auth.Interfaces;
+﻿namespace Memo.Auth.Services;
 
 /// <summary>Интерфейс сервиса по работе с паролями</summary>
 public interface IPasswordService

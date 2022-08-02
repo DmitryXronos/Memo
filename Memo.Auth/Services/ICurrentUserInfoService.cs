@@ -1,6 +1,6 @@
-﻿using Memo.Auth.Enums;
+﻿using Memo.Auth.Access;
 
-namespace Memo.Auth.Interfaces;
+namespace Memo.Auth.Services;
 
 /// <summary>Информация о текущем пользователе</summary>
 public interface ICurrentUserInfoService

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Memo.Notes.Attributes;
+namespace Memo.Notes.Validation;
 
 /// <summary>Валидирует модель, пришедшую в запросе</summary>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]

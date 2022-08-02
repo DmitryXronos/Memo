@@ -1,6 +1,5 @@
 using Memo.Auth;
 using Memo.Auth.Config;
-using Memo.Auth.Interfaces;
 using Memo.Auth.Services;
 using Microsoft.EntityFrameworkCore;
 

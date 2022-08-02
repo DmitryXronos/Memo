@@ -2,7 +2,6 @@ using System.Reflection;
 using MediatR;
 using Memo.Notes;
 using Memo.Notes.Config;
-using Memo.Notes.Interfaces;
 using Memo.Notes.Services;
 using Microsoft.EntityFrameworkCore;
 

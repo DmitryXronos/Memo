@@ -1,5 +1,4 @@
-﻿using Memo.Auth.Interfaces;
-using Memo.Auth.Models;
+﻿using Memo.Auth.Models;
 using Memo.Auth.RequestModels;
 using Microsoft.EntityFrameworkCore;
 

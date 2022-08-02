@@ -1,4 +1,3 @@
-using Memo.Mvc.Interfaces;
 using Memo.Mvc.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 

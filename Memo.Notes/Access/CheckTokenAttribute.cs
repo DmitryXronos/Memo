@@ -1,8 +1,8 @@
-﻿using Memo.Notes.Interfaces;
+﻿using Memo.Notes.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Memo.Notes.Attributes;
+namespace Memo.Notes.Access;
 
 /// <summary>Проверяет токен, пришедший в заголовках запроса</summary>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]

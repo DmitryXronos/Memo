@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MediatR;
-using Memo.Notes.Interfaces;
 using Memo.Notes.Models;
+using Memo.Notes.Services;
 
 namespace Memo.Notes.Features.NoteFeatures.Commands;
 

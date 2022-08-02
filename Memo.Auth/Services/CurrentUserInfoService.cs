@@ -1,5 +1,4 @@
-﻿using Memo.Auth.Enums;
-using Memo.Auth.Interfaces;
+﻿using Memo.Auth.Access;
 
 namespace Memo.Auth.Services;
 

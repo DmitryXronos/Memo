@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.Json;
 using Memo.Notes.Config;
-using Memo.Notes.Interfaces;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

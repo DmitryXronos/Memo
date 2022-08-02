@@ -1,6 +1,4 @@
-﻿using Memo.Notes.Interfaces;
-
-namespace Memo.Notes.Services;
+﻿namespace Memo.Notes.Services;
 
 /// <summary>Информация о текущем о пользователе</summary>
 public sealed class CurrentUserInfoService : ICurrentUserInfoService

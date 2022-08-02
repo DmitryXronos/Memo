@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using Memo.Auth.Interfaces;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Memo.Auth.Services;

@@ -1,4 +1,4 @@
-﻿using Memo.Auth.Enums;
+﻿using Memo.Auth.Access;
 
 namespace Memo.Auth.Models;
 

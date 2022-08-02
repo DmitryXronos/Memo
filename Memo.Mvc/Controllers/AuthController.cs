@@ -1,7 +1,5 @@
-﻿using System.Security.Claims;
-using Memo.Mvc.Interfaces;
+﻿using Memo.Mvc.Services;
 using Memo.Mvc.RequestModels;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Memo.Mvc.Controllers;

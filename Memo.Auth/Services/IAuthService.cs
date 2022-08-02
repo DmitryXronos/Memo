@@ -1,6 +1,6 @@
 ﻿using Memo.Auth.RequestModels;
 
-namespace Memo.Auth.Interfaces;
+namespace Memo.Auth.Services;
 
 /// <summary>Интерфейс сервиса авторизации</summary>
 public interface IAuthService

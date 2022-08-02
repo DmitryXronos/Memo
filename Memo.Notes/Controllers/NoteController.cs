@@ -1,7 +1,8 @@
 ﻿using MediatR;
-using Memo.Notes.Attributes;
+using Memo.Notes.Access;
 using Memo.Notes.Features.NoteFeatures.Commands;
 using Memo.Notes.Features.NoteFeatures.Queries;
+using Memo.Notes.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Memo.Notes.Controllers;

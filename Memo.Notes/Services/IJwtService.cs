@@ -1,4 +1,4 @@
-﻿namespace Memo.Notes.Interfaces;
+﻿namespace Memo.Notes.Services;
 
 /// <summary>Интерфейс сервиса по работе с jwt</summary>
 public interface IJwtService

@@ -1,4 +1,4 @@
-﻿namespace Memo.Notes.Interfaces;
+﻿namespace Memo.Notes.Services;
 
 /// <summary>
 /// Информация о текущем пользователе
