@@ -14,18 +14,21 @@ services:
         depends_on:
             - postgres
         container_name: memo_auth
-        build:./Memo.Auth
+        build:
+            context: ./Memo.Auth
       
     memo_notes:
         depends_on:
             - postgres
         container_name: memo_notes
-        build:./Memo.Notes
+        build:
+            context: ./Memo.Notes
             
     memo_mvc:
         depends_on:
             - memo_auth
             - memo_notes
-        build:./Memo.Mvc
+        build:
+            context: ./Memo.Mvc
         ports:
             - "5000:80"
