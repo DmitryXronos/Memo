@@ -10,6 +10,6 @@ builder.Services.AddOcelot();
 var app = builder.Build();
 
 // Ocelot
-app.UseOcelot().Wait(); 
+await app.UseOcelot();
 
 app.Run();
