@@ -33,7 +33,7 @@ public sealed class AuthController : Controller
         
         HttpContext.Response.Cookies.Append("token", token);
         
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Profile");
     }
 
     /// <summary>Возвращает представление со страницей регистрации</summary>
@@ -55,7 +55,7 @@ public sealed class AuthController : Controller
         
         HttpContext.Response.Cookies.Append("token", token);
         
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Profile");
     }
 
     

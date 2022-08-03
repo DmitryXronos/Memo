@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Memo.Mvc.Controllers;
 
-/// <summary>Контроллер домашней страницы</summary>
-public sealed class HomeController : Controller
+/// <summary>Контроллер профиль пользователя</summary>
+public sealed class ProfileController : Controller
 {
     [CheckToken]
     public IActionResult Index()
     {
-        return View();
+        return Ok();
     }
 }
