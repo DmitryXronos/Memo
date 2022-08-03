@@ -15,7 +15,7 @@ public sealed class AuthService : IAuthService
         var json = JsonSerializer.Serialize(requestModel);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         var response = await httpClient
-            .PostAsync("http://memo_authy:80/api/Auth/Login", content);
+            .PostAsync("http://memo_auth:80/api/Auth/Login", content);
 
         // Читаем токен из ответа
         var token = await response.Content.ReadAsStringAsync();
