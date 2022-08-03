@@ -12,4 +12,7 @@ public sealed class ChangePasswordRequestModel
     /// <summary>Новый пароль</summary>
     [StringLength(20, MinimumLength = 4)]
     public string NewPassword { get; set; } = string.Empty;
+    
+    /// <summary>Id пользователя</summary>
+    public Guid UserId { get; set; }
 }

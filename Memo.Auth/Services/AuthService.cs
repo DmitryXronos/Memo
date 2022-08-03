@@ -10,15 +10,12 @@ public sealed class AuthService : IAuthService
     private readonly ApplicationContext _context;
     private readonly IJwtService _jwtService;
     private readonly IPasswordService _passwordService;
-    private readonly ICurrentUserInfoService _info;
 
-    public AuthService(ApplicationContext context, IJwtService jwtService, IPasswordService passwordService,
-        ICurrentUserInfoService info)
+    public AuthService(ApplicationContext context, IJwtService jwtService, IPasswordService passwordService)
     {
         _context = context;
         _jwtService = jwtService;
         _passwordService = passwordService;
-        _info = info;
     }
     
     /// <summary>Выполняет вход за пользователя и возвращает токен</summary>
@@ -35,11 +32,7 @@ public sealed class AuthService : IAuthService
             return string.Empty;
 
             // Генерируем и возвращаем токен
-        var token = _jwtService.GenerateJwt(new CurrentUserInfoService
-        {
-            UserId = user.Id,
-            Role = user.Role
-        });
+        var token = _jwtService.GenerateJwt(user);
 
         return token;
     }
@@ -71,11 +64,7 @@ public sealed class AuthService : IAuthService
         await _context.SaveChangesAsync();
 
         // Генерируем и возвращаем токен
-        var token = _jwtService.GenerateJwt(new CurrentUserInfoService
-        {
-            UserId = user.Id,
-            Role = user.Role
-        });
+        var token = _jwtService.GenerateJwt(user);
 
         return token;
     }
@@ -84,7 +73,7 @@ public sealed class AuthService : IAuthService
     public async Task<bool> ChangePasswordAsync(ChangePasswordRequestModel requestModel)
     {
         var user = await _context.Users
-            .FirstOrDefaultAsync(p => p.Id == _info.UserId);
+            .FirstOrDefaultAsync(p => p.Id == requestModel.UserId);
 
         if (user is null)
             return false;

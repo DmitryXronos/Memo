@@ -1,10 +1,8 @@
 ﻿@model Memo.Mvc.RequestModels.RegisterRequestModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 
 <h2>Registration</h2>
 
-<form asp-action="Register" asp-controller="Auth" asp-anti-forgery="true">
+<form asp-action="Register" asp-controller="Auth">
     <div>
         <p>
             <label asp-for="Email">Email</label><br />
@@ -14,12 +12,12 @@
         <p>
             <label asp-for="Name">Name</label><br />
             <input asp-for="Name" />
-            <span asp-validation-for="Name" />
+            <span asp-validation-for="Name"></span>
         </p>
         <p>
             <label asp-for="Password">Password</label><br />
             <input asp-for="Password" />
-            <span asp-validation-for="Password" />
+            <span asp-validation-for="Password"></span>
         </p>
         <p>
             <input type="submit" value="Register"  />

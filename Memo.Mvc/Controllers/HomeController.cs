@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Memo.Mvc.Access;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Memo.Mvc.Controllers;
@@ -8,7 +8,7 @@ namespace Memo.Mvc.Controllers;
 /// </summary>
 public sealed class HomeController : Controller
 {
-    [Authorize]
+    [CheckToken]
     public IActionResult Index()
     {
         return View();

@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Memo.Notes.Models;
-using Memo.Notes.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Memo.Notes.Features.NoteFeatures.Queries;
@@ -10,22 +9,23 @@ namespace Memo.Notes.Features.NoteFeatures.Queries;
 /// </summary>
 public sealed class GetAllNotesQuery : IRequest<IEnumerable<Note>>
 {
+    /// <summary>Id юзера</summary>
+    public Guid UserId { get; set; }
+    
     public class GetAllNotesQueryHandler : IRequestHandler<GetAllNotesQuery, IEnumerable<Note>>
     {
         private readonly ApplicationContext _context;
-        private readonly ICurrentUserInfoService _info;
 
-        public GetAllNotesQueryHandler(ApplicationContext context, ICurrentUserInfoService info)
+        public GetAllNotesQueryHandler(ApplicationContext context)
         {
             _context = context;
-            _info = info;
         }
     
         public async Task<IEnumerable<Note>> Handle(GetAllNotesQuery query, CancellationToken cancellationToken)
         {
             var notes = await _context.Notes
                 .AsNoTracking()
-                .Where(p => p.UserId == _info.UserId)
+                .Where(p => p.UserId == query.UserId)
                 .ToArrayAsync(cancellationToken);
 
             return notes;

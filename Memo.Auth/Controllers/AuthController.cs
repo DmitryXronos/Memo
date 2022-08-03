@@ -1,7 +1,5 @@
-﻿using Memo.Auth.Access;
-using Memo.Auth.Services;
+﻿using Memo.Auth.Services;
 using Memo.Auth.RequestModels;
-using Memo.Auth.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Memo.Auth.Controllers;
@@ -18,7 +16,6 @@ public sealed class AuthController : ControllerBase
     }
     
     /// <summary>Выполнение входа пользователя</summary>
-    [ValidateModel]
     [HttpPost]
     public async Task<IActionResult> Login(LoginRequestModel requestModel)
     {
@@ -31,7 +28,6 @@ public sealed class AuthController : ControllerBase
     }
     
     /// <summary>Регистрация ползователя</summary>
-    [ValidateModel]
     [HttpPost]
     public async Task<IActionResult> Register(RegisterRequestModel requestModel)
     {
@@ -44,8 +40,6 @@ public sealed class AuthController : ControllerBase
     }
 
     /// <summary>Смена пароля</summary>
-    [ValidateModel]
-    [CheckToken]
     [HttpPost]
     public async Task<IActionResult> ChangePassword(ChangePasswordRequestModel requestModel)
     {

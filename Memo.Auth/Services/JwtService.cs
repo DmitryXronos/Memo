@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using Memo.Auth.Config;
+using Memo.Auth.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -18,8 +19,8 @@ public sealed class JwtService : IJwtService
         _options = options.Value;
     }
 
-    /// <summary>Генерирует Jwt</summary>
-    public string GenerateJwt(ICurrentUserInfoService info)
+    /// <summary>Генерирует Jwt для юзера</summary>
+    public string GenerateJwt(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_options.Key);
@@ -27,8 +28,10 @@ public sealed class JwtService : IJwtService
         {
             Subject = new ClaimsIdentity(new[]
             {
-                // Сериализуем Payload в JSON и записываем в токен
-                new Claim(nameof(ICurrentUserInfoService), JsonSerializer.Serialize(info))
+                // Id юзера
+                new Claim("UserId", user.Id.ToString()),
+                // Его роль
+                new Claim("Role", ((byte)user.Role).ToString())
             }),
             // Длительность жизни токена
             Expires = DateTime.UtcNow.AddMinutes(_options.DurationInMinutes),
@@ -43,47 +46,5 @@ public sealed class JwtService : IJwtService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         
         return tokenHandler.WriteToken(token);
-    }
-
-    /// <summary>Проверяет достоверность jwt</summary>
-    public bool VerifyJwt(string token, out ICurrentUserInfoService? info)
-    {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        
-        // Пытаемся валидировать токен
-        try
-        {
-            tokenHandler.ValidateToken(token, new TokenValidationParameters
-            {
-                // Валидируем подпись
-                ValidateIssuerSigningKey = true,
-                // Валидируем издателя
-                ValidateIssuer = true,
-                // Валидируем потребителя
-                ValidateAudience = true,
-                // Валидируем время жизни токена
-                ValidateLifetime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_options.Key)),
-                ValidIssuer = _options.Issuer,
-                ValidAudience = _options.Audience
-            }, out _);
-        }
-        catch
-        {
-            info = null;
-            return false;
-        }
-
-        // Пытаемся считать инфу о пользователе из токена
-        var securityToken  = tokenHandler.ReadToken(token) as JwtSecurityToken;
-        if (securityToken is null)
-        {
-            info = null;
-            return false;
-        }
-        var stringClaimValue  = securityToken.Claims.First(claim  => claim.Type == nameof(ICurrentUserInfoService)).Value;
-        info = JsonSerializer.Deserialize<ICurrentUserInfoService>(stringClaimValue);
-
-        return true;
     }
 }

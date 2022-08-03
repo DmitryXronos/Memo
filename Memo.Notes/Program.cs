@@ -2,7 +2,6 @@ using System.Reflection;
 using MediatR;
 using Memo.Notes;
 using Memo.Notes.Config;
-using Memo.Notes.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +19,6 @@ builder.Services.AddControllers();
 
 // MediatR
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-
-// Сервисы
-builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<ICurrentUserInfoService, CurrentUserInfoService>();
 
 var app = builder.Build();
 

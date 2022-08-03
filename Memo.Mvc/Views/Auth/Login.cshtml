@@ -1,20 +1,18 @@
 ﻿@model Memo.Mvc.RequestModels.LoginRequestModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 
 <h2>Authorization</h2>
 
-<form asp-action="Login" asp-controller="Auth" asp-anti-forgery="true">
+<form asp-action="Login" asp-controller="Auth">
     <div>
         <p>
             <label asp-for="Email">Email</label><br />
             <input type="text" asp-for="Email" />
-            <span asp-validation-for="Email" />
+            <span asp-validation-for="Email"></span>
         </p>
         <p>
             <label asp-for="Password">Password</label><br />
             <input asp-for="Password" />
-            <span asp-validation-for="Password" />
+            <span asp-validation-for="Password"></span>
         </p>
         <p>
             <input type="submit" value="Log In"  />

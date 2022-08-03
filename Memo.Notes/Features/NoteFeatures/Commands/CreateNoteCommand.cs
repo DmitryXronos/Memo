@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Memo.Notes.Models;
-using Memo.Notes.Services;
 
 namespace Memo.Notes.Features.NoteFeatures.Commands;
 
@@ -16,15 +15,16 @@ public sealed class CreateNoteCommand : IRequest<Guid>
     [MaxLength(1000)]
     public string Text { get; set; } = string.Empty;
     
+    /// <summary>Id юзера</summary>
+    public Guid UserId { get; set; }
+    
     public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Guid>
     {
         private readonly ApplicationContext _context;
-        private readonly ICurrentUserInfoService _info;
-        
-        public CreateNoteCommandHandler(ApplicationContext context, ICurrentUserInfoService info)
+
+        public CreateNoteCommandHandler(ApplicationContext context)
         {
             _context = context;
-            _info = info;
         }
 
         public async Task<Guid> Handle(CreateNoteCommand command, CancellationToken cancellationToken)
@@ -32,7 +32,7 @@ public sealed class CreateNoteCommand : IRequest<Guid>
             var note = new Note
             {
                 Id = Guid.NewGuid(),
-                UserId = _info.UserId,
+                UserId = command.UserId,
                 Title = command.Title,
                 Text = command.Text
             };
