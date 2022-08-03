@@ -1,4 +1,5 @@
-﻿using Memo.Mvc.Services;
+﻿using Memo.Mvc.Access;
+using Memo.Mvc.Services;
 using Memo.Mvc.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,5 +56,17 @@ public sealed class AuthController : Controller
         HttpContext.Response.Cookies.Append("token", token);
         
         return RedirectToAction("Index", "Home");
+    }
+
+    
+    /// <summary>Выполняет выход пользователя из аккаунта</summary>
+    [CheckToken]
+    [HttpPost]
+    public IActionResult Logout()
+    {
+        if (HttpContext.Request.Cookies.ContainsKey("token"))
+            HttpContext.Response.Cookies.Delete("token");
+
+        return RedirectToAction("Login", "Auth");
     }
 }
