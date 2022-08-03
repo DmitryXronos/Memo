@@ -22,6 +22,10 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
+// Накатываем миграции на базу
+var databaseContext = app.Services.GetRequiredService<ApplicationContext>();
+await databaseContext.Database.MigrateAsync();
+
 // Маршрутизация по контроллерам
 app.MapControllers();
 app.MapGet("/", async context
