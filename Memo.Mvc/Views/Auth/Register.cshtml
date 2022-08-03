@@ -1,28 +1,30 @@
 ﻿@model Memo.Mvc.RequestModels.RegisterRequestModel
 
-<h2>Registration</h2>
+<div class="container-fluid">
 
-<form asp-action="Register" asp-controller="Auth">
-    <div>
-        <p>
-            <label asp-for="Email">Email</label><br />
-            <input type="text" asp-for="Email" />
-            <span asp-validation-for="Email" />
-        </p>
-        <p>
-            <label asp-for="Name">Name</label><br />
-            <input asp-for="Name" />
-            <span asp-validation-for="Name"></span>
-        </p>
-        <p>
-            <label asp-for="Password">Password</label><br />
-            <input asp-for="Password" />
-            <span asp-validation-for="Password"></span>
-        </p>
-        <p>
-            <input type="submit" value="Register"  />
-        </p>
+ <div class="col-md-4 offset-md-4">
+    <div class="form-container">
+        <div class="form-icon"><i class="fa fa-user"></i></div>
+            <h3 class="title">Registration in Memo</h3>
+        <form class="form-horizontal" asp-action="Register" asp-controller="Auth">
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input class="form-control" type="email" placeholder="email address" asp-for="Email">
+                <span asp-validation-for="Email"></span>
+            </div>
+                        <div class="form-group">
+                            <label asp-for="Name">Name</label>
+                            <input class="form-control" type="email" placeholder="user name" asp-for="Name">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input class="form-control" type="password" placeholder="password" asp-for="Password">
+                <span asp-validation-for="Password"></span>
+            </div>
+            <input type="submit" class="btn btn-default" value="Register"/>
+        </form>
+        <a asp-action="Login" asp-controller="Auth">Already have an account? Log in</a>
+        </div>
     </div>
-</form>
-
-<a asp-action="Login" asp-controller="Auth">Already have an account? Log in</a>
+</div>
