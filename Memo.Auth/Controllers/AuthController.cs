@@ -17,7 +17,7 @@ public sealed class AuthController : ControllerBase
     
     /// <summary>Выполнение входа пользователя</summary>
     [HttpPost]
-    public async Task<IActionResult> Login(LoginRequestModel requestModel)
+    public async Task<IActionResult> Login([FromBody] LoginRequestModel requestModel)
     {
         var token = await _authService.LoginAsync(requestModel);
         
@@ -29,7 +29,7 @@ public sealed class AuthController : ControllerBase
     
     /// <summary>Регистрация ползователя</summary>
     [HttpPost]
-    public async Task<IActionResult> Register(RegisterRequestModel requestModel)
+    public async Task<IActionResult> Register([FromBody] RegisterRequestModel requestModel)
     {
         var token = await _authService.RegisterAsync(requestModel);
         

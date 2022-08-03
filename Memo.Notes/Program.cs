@@ -23,7 +23,8 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 var app = builder.Build();
 
 // Накатываем миграции на базу
-var databaseContext = app.Services.GetRequiredService<ApplicationContext>();
+using var scope = app.Services.CreateScope();
+var databaseContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
 await databaseContext.Database.MigrateAsync();
 
 // Маршрутизация по контроллерам

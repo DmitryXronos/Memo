@@ -1,4 +1,5 @@
-﻿using Memo.Mvc.Extensions;
+﻿using System.Text;
+using System.Text.Json;
 using Memo.Mvc.RequestModels;
 
 namespace Memo.Mvc.Services;
@@ -11,11 +12,13 @@ public sealed class AuthService : IAuthService
     {
         // Шлем запрос к сервису авторизации
         using var httpClient = new HttpClient();
-        var queryString = $"http://memo_authy:80/Auth/Login?{requestModel.ToQueryString()}";
-        var result = await httpClient.PostAsync(queryString, null);
+        var json = JsonSerializer.Serialize(requestModel);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var response = await httpClient
+            .PostAsync("http://memo_authy:80/api/Auth/Login", content);
 
         // Читаем токен из ответа
-        var token = await result.Content.ReadAsStringAsync();
+        var token = await response.Content.ReadAsStringAsync();
 
         return token;
     }
@@ -25,11 +28,13 @@ public sealed class AuthService : IAuthService
     {
         // Шлем запрос к сервису авторизации
         using var httpClient = new HttpClient();
-        var queryString = $"http://memo_auth:80/Auth/Register?{requestModel.ToQueryString()}";
-        var result = await httpClient.PostAsync(queryString, null);
+        var json = JsonSerializer.Serialize(requestModel);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var response = await httpClient
+            .PostAsync("http://memo_auth:80/api/Auth/Register", content);
 
         // Читаем токен из ответа
-        var token = await result.Content.ReadAsStringAsync();
+        var token = await response.Content.ReadAsStringAsync();
 
         return token;
     }

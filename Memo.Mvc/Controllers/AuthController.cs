@@ -27,7 +27,7 @@ public sealed class AuthController : Controller
         
         var token = await _authService.LoginAsync(model);
         
-        if (! string.IsNullOrWhiteSpace(token))
+        if (string.IsNullOrWhiteSpace(token))
             return View(model);
         
         HttpContext.Response.Cookies.Append("token", token);
@@ -49,7 +49,7 @@ public sealed class AuthController : Controller
         
         var token = await _authService.RegisterAsync(model);
         
-        if (! string.IsNullOrWhiteSpace(token))
+        if (string.IsNullOrWhiteSpace(token))
             return View(model);
         
         HttpContext.Response.Cookies.Append("token", token);
