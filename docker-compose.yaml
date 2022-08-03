@@ -9,7 +9,7 @@ services:
             POSTGRES_PASSWORD: "gWZJPiXy6q"
             PGDATA: "/data/postgres"
         ports:
-            - "5432:5432"
+            - "15432:5432"
         restart: unless-stopped
     
     memo_auth:
