@@ -11,10 +11,18 @@ services:
         ports:
             - "15432:5432"
         restart: unless-stopped
+        
+    rabbitmq:
+        image: rabbitmq:3.10.7-management
+        container_name: rabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
     
     memo_auth:
         depends_on:
             - postgres
+            - rabbitmq
         container_name: memo_auth
         build:
             context: ./Memo.Auth
@@ -22,6 +30,7 @@ services:
     memo_notes:
         depends_on:
             - postgres
+            - rabbitmq
         container_name: memo_notes
         build:
             context: ./Memo.Notes
