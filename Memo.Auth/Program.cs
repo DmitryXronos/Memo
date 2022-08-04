@@ -1,9 +1,14 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Memo.Auth;
 using Memo.Auth.Config;
 using Memo.Auth.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Регаем Autofac как DI
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 // База данных
 var databaseConnection = builder.Configuration.GetConnectionString("Database");
@@ -16,10 +21,13 @@ builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(J
 // Контроллеры
 builder.Services.AddControllers();
 
-// Сервисы
-builder.Services.AddScoped<IJwtService, JwtService>();
-builder.Services.AddScoped<IPasswordService, PasswordService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+// Самописные сервисы
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterType<JwtService>().As<IJwtService>().SingleInstance();
+    containerBuilder.RegisterType<PasswordService>().As<IPasswordService>().SingleInstance();
+    containerBuilder.RegisterType<AuthService>().As<IAuthService>().InstancePerRequest();
+});
 
 var app = builder.Build();
 

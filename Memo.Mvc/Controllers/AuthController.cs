@@ -61,7 +61,6 @@ public sealed class AuthController : Controller
     
     /// <summary>Выполняет выход пользователя из аккаунта</summary>
     [CheckToken]
-    [HttpPost]
     public IActionResult Logout()
     {
         if (HttpContext.Request.Cookies.ContainsKey("token"))
